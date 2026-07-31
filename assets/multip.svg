@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="m-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA"/>
+      <stop offset="100%" style="stop-color:#C4B5FD"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Document background -->
+  <rect x="80" y="40" width="352" height="432" rx="24" ry="24" fill="url(#bg)" filter="url(#shadow)"/>
+
+  <!-- Folded corner -->
+  <path d="M368 40 L432 104 L368 104 Z" fill="#8B5CF6"/>
+  <path d="M368 40 L432 104 L432 456 L368 432 Z" fill="#5B21B6" opacity="0.3"/>
+
+  <!-- Stylized purple M -->
+  <text x="256" y="310" font-family="Arial, Helvetica, sans-serif" font-size="220" font-weight="bold" fill="url(#m-grad)" text-anchor="middle" filter="url(#shadow)">M</text>
+
+  <!-- .multip description text -->
+  <text x="256" y="400" font-family="monospace" font-size="28" fill="white" text-anchor="middle" opacity="0.8">.multip</text>
+
+  <!-- Source code lines -->
+  <rect x="120" y="420" width="120" height="4" rx="2" fill="white" opacity="0.4"/>
+  <rect x="260" y="420" width="80" height="4" rx="2" fill="white" opacity="0.3"/>
+
+  <!-- Circuit dots -->
+  <circle cx="120" cy="80" r="5" fill="white" opacity="0.4"/>
+  <circle cx="140" cy="80" r="5" fill="white" opacity="0.4"/>
+  <circle cx="160" cy="80" r="5" fill="white" opacity="0.4"/>
+  <line x1="120" y1="80" x2="160" y2="80" stroke="white" stroke-width="1.5" opacity="0.25"/>
+</svg>

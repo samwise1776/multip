@@ -1,0 +1,46 @@
+{
+  "comments": {
+    "lineComment": "//",
+    "blockComment": ["/*", "*/"]
+  },
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+  "autoClosingPairs": [
+    { "open": "{", "close": "}" },
+    { "open": "[", "close": "]" },
+    { "open": "(", "close": ")" },
+    { "open": "\"", "close": "\"", "notIn": ["string"] },
+    { "open": "'", "close": "'", "notIn": ["string"] }
+  ],
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+  "folding": {
+    "markers": {
+      "start": "^\\s*(page|window|column|row|button|text|heading|component|route|class|function|if|else|while|for|animate|database|server|browser)\\b.*\\{",
+      "end": "^\\s*\\}"
+    }
+  },
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(page|window|column|row|button|text|heading|component|route|class|function|if|else|while|for|animate|database|server|browser|on\\s+\\w+)\\b.*\\{",
+    "decreaseIndentPattern": "^\\s*\\}"
+  },
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\=\\+\\{\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*(page|window|column|row|button|text|heading|component|route|class|function|if|else|while|for|animate|database|server|browser)\\b.*\\{\\s*$",
+      "action": { "indent": "indent" }
+    },
+    {
+      "beforeText": "^\\s*\\}$",
+      "action": { "indent": "outdent" }
+    }
+  ]
+}

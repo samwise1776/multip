@@ -1,0 +1,135 @@
+// Server Example: REST API with Multip
+
+
+server API {
+    port = 8080
+    host = "localhost"
+
+
+    route "/api/users" {
+        method = "GET"
+
+        on request {
+            var users = [
+                { id: 1, name: "Alice", email: "alice@example.com" },
+                { id: 2, name: "Bob", email: "bob@example.com" },
+                { id: 3, name: "Carol", email: "carol@example.com" }
+            ]
+
+            response.json(users)
+        }
+    }
+
+
+    route "/api/users/:id" {
+        method = "GET"
+
+        on request {
+            var id = params.id
+            var user = Users.find(id = id)
+
+            if user != null {
+                response.json(user)
+            } else {
+                response.status(404)
+                response.json({ error: "User not found" })
+            }
+        }
+    }
+
+
+    route "/api/users" {
+        method = "POST"
+
+        on request {
+            var data = request.body
+            var user = Users.create(data)
+            response.status(201)
+            response.json(user)
+        }
+    }
+
+
+    route "/api/health" {
+        method = "GET"
+
+        on request {
+            response.json({ status: "ok", version: "1.0.0" })
+        }
+    }
+}
+
+
+page Home
+
+
+window {
+    title = "Multip Server Example"
+
+
+    column {
+        padding = 30
+
+
+        heading {
+            text = "Multip Server"
+            size = 32
+            color = #10B981
+        }
+
+
+        text {
+            value = "REST API running on http://localhost:8080"
+            size = 16
+        }
+
+
+        row {
+            button {
+                text = "Start Server"
+
+                on click {
+                    print("Server started on port 8080")
+                }
+            }
+
+            button {
+                text = "Stop Server"
+
+                on click {
+                    print("Server stopped")
+                }
+            }
+        }
+
+
+        heading {
+            text = "API Endpoints"
+            size = 24
+        }
+
+
+        text {
+            value = "GET  /api/users     - List all users"
+            size = 14
+        }
+
+
+        text {
+            value = "GET  /api/users/:id - Get user by ID"
+            size = 14
+        }
+
+
+        text {
+            value = "POST /api/users     - Create new user"
+            size = 14
+        }
+
+
+        text {
+            value = "GET  /api/health    - Health check"
+            size = 14
+        }
+    }
+}

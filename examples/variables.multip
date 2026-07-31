@@ -1,0 +1,67 @@
+const appName = "Multip App"
+const version = 1.0
+
+
+var counter = 0
+var items = ["apple", "banana", "cherry"]
+
+
+function greet(name) {
+    return "Hello, " + name + "!"
+}
+
+
+page Home
+
+
+window {
+    title = appName
+
+
+    column {
+        padding = 30
+
+        heading {
+            text = greet("World")
+            size = 32
+        }
+
+
+        text {
+            value = "Version: " + version
+            size = 14
+        }
+
+
+        text {
+            value = "Counter: " + counter
+            size = 20
+        }
+
+
+        button {
+            text = "Increment"
+
+            on click {
+                counter = counter + 1
+                print("Counter: " + counter)
+            }
+        }
+
+
+        for item in items {
+            text {
+                value = "- " + item
+                size = 16
+            }
+        }
+
+
+        if counter > 5 {
+            text {
+                value = "Counter is greater than 5!"
+                size = 18
+            }
+        }
+    }
+}

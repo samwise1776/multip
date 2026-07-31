@@ -1,0 +1,105 @@
+{
+  "name": "multip",
+  "displayName": "Multip Language Support",
+  "description": "Syntax highlighting, IntelliSense, snippets, and language support for Multip (.multip) files",
+  "version": "1.0.0",
+  "publisher": "multip-lang",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:multip"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "multip",
+        "aliases": ["Multip", "multip"],
+        "extensions": [".multip"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "multip",
+        "scopeName": "source.multip",
+        "path": "./syntaxes/multip.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "multip",
+        "path": "./snippets/multip.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "multip.newProject",
+        "title": "Multip: New Project"
+      },
+      {
+        "command": "multip.build",
+        "title": "Multip: Build Project"
+      },
+      {
+        "command": "multip.run",
+        "title": "Multip: Run Project"
+      },
+      {
+        "command": "multip.compile",
+        "title": "Multip: Compile"
+      },
+      {
+        "command": "multip.format",
+        "title": "Multip: Format Document"
+      },
+      {
+        "command": "multip.publish",
+        "title": "Multip: Publish Package"
+      },
+      {
+        "command": "multip.browser",
+        "title": "Multip: Open Browser Preview"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "multip",
+        "label": "Multip File Icons",
+        "path": "./icons/multip-icon-theme.json"
+      }
+    ],
+    "configuration": {
+      "title": "Multip",
+      "properties": {
+        "multip.compiler.path": {
+          "type": "string",
+          "default": "multip",
+          "description": "Path to the Multip compiler executable"
+        },
+        "multip.format.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable auto-formatting for Multip files"
+        },
+        "multip.lint.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable linting for Multip files"
+        }
+      }
+    }
+  },
+  "keywords": ["multip", "multip-lang", ".multip", "programming language"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multip-lang/multip-vscode"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,71 @@
+// Multip Browser Example
+// Demonstrates browser components with address bar and navigation
+
+
+route "/" {
+    Home()
+}
+
+
+route "/settings" {
+    Settings()
+}
+
+
+route "/about" {
+    About()
+}
+
+
+page Home
+
+
+window {
+    title = "Multip Browser Demo"
+
+
+    column {
+        padding = 30
+
+
+        heading {
+            text = "Multip Browser"
+            size = 36
+            color = #6C63FF
+        }
+
+
+        text {
+            value = "A built-in browser engine with tabs, bookmarks, and navigation"
+            size = 16
+        }
+
+
+        row {
+            button {
+                text = "Home"
+
+                on click {
+                    browser.navigate("multip://home")
+                    print("Navigating to home")
+                }
+            }
+
+            button {
+                text = "Settings"
+
+                on click {
+                    browser.navigate("multip://settings")
+                }
+            }
+
+            button {
+                text = "About"
+
+                on click {
+                    browser.navigate("multip://about")
+                }
+            }
+        }
+    }
+}

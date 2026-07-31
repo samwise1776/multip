@@ -1,0 +1,7 @@
+{
+  "icons": {
+    "*.multip": {
+      "icon": "../assets/multip.svg"
+    }
+  }
+}

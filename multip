@@ -1,0 +1,20 @@
+#!/bin/bash
+# multip — Multip Language Runtime CLI
+# Usage: multip [command] [args...]
+
+MULTIP_HOME="/home/ray/Multip"
+BUILD_DIR="$MULTIP_HOME/build"
+
+# Ensure build exists
+if [ ! -d "$BUILD_DIR" ]; then
+    echo "[multip] Building..."
+    mkdir -p "$BUILD_DIR"
+    javac -d "$BUILD_DIR" $(find "$MULTIP_HOME/src" -name "*.java") 2>&1
+    if [ $? -ne 0 ]; then
+        echo "[multip] Build failed"
+        exit 1
+    fi
+fi
+
+# Run
+java -cp "$BUILD_DIR" src.App "$@"

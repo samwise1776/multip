@@ -1,0 +1,121 @@
+// Advanced Features: Components, Animations, Database
+
+
+component Card(title, body) {
+    column {
+        heading {
+            text = title
+            size = 24
+        }
+
+        paragraph {
+            text = body
+            size = 16
+        }
+    }
+}
+
+
+component UserCard(name, email) {
+    column {
+        heading {
+            text = name
+            size = 20
+        }
+
+        text {
+            value = email
+            size = 14
+        }
+
+        button {
+            text = "View Profile"
+
+            on click {
+                print("Viewing profile for: " + name)
+            }
+        }
+    }
+}
+
+
+database Users
+
+
+page Home
+
+
+window {
+    title = "Advanced Features Demo"
+
+
+    column {
+        padding = 30
+
+
+        heading {
+            text = "Components & Animations"
+            size = 32
+            color = #8B5CF6
+        }
+
+
+        // Component usage
+        Card("Getting Started", "Components let you create reusable UI elements.")
+
+
+        Card("Animations", "Add smooth transitions to your interface.")
+
+
+        Card("Database", "Store and retrieve data with the built-in database API.")
+
+
+        // Animation example
+        button {
+            text = "Animate Me"
+
+            on click {
+                print("Animation triggered!")
+            }
+        }
+
+
+        animate button {
+            duration = 400ms
+
+            scale {
+                from = 1.0
+                to = 1.2
+            }
+        }
+
+
+        // User cards
+        heading {
+            text = "User Directory"
+            size = 24
+        }
+
+
+        UserCard("Alice Smith", "alice@example.com")
+        UserCard("Bob Johnson", "bob@example.com")
+        UserCard("Carol Williams", "carol@example.com")
+
+
+        // Database operations
+        heading {
+            text = "Database Operations"
+            size = 24
+        }
+
+
+        button {
+            text = "Query Users"
+
+            on click {
+                var user = Users.find(id = 5)
+                print("Found user: " + user.name)
+            }
+        }
+    }
+}

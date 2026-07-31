@@ -1,0 +1,272 @@
+{
+  "Page": {
+    "prefix": "page",
+    "body": [
+      "page ${1:Name}",
+      "",
+      "window {",
+      "\ttitle = \"${2:App Title}\"",
+      "",
+      "\tcolumn {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a new page"
+  },
+  "Window": {
+    "prefix": "window",
+    "body": [
+      "window {",
+      "\ttitle = \"${1:App Title}\"",
+      "",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a window element"
+  },
+  "Column": {
+    "prefix": "column",
+    "body": [
+      "column {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a column layout"
+  },
+  "Row": {
+    "prefix": "row",
+    "body": [
+      "row {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a row layout"
+  },
+  "Text": {
+    "prefix": "text",
+    "body": [
+      "text {",
+      "\tvalue = \"${1:Hello World}\"",
+      "\tsize = ${2:16}",
+      "}"
+    ],
+    "description": "Create a text element"
+  },
+  "Button": {
+    "prefix": "button",
+    "body": [
+      "button {",
+      "\ttext = \"${1:Click Me}\"",
+      "",
+      "\ton click {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a button with click handler"
+  },
+  "Heading": {
+    "prefix": "heading",
+    "body": [
+      "heading {",
+      "\ttext = \"${1:Title}\"",
+      "\tsize = ${2:28}",
+      "}"
+    ],
+    "description": "Create a heading element"
+  },
+  "Image": {
+    "prefix": "image",
+    "body": [
+      "image {",
+      "\tsrc = \"${1:url}\"",
+      "\twidth = ${2:200}",
+      "\theight = ${3:200}",
+      "}"
+    ],
+    "description": "Create an image element"
+  },
+  "Route": {
+    "prefix": "route",
+    "body": [
+      "route \"${1:/}\" {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a route"
+  },
+  "Component": {
+    "prefix": "component",
+    "body": [
+      "component ${1:Name}(${2:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a component"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a class"
+  },
+  "Function": {
+    "prefix": "function",
+    "body": [
+      "function ${1:name}(${2:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a function"
+  },
+  "Async Function": {
+    "prefix": "async function",
+    "body": [
+      "async function ${1:name}(${2:params}) {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create an async function"
+  },
+  "Fetch": {
+    "prefix": "fetch",
+    "body": [
+      "response = fetch(\"${1:url}\")",
+      "print(response.body)",
+      "${0}"
+    ],
+    "description": "Fetch a URL"
+  },
+  "Database": {
+    "prefix": "database",
+    "body": [
+      "database ${1:TableName}",
+      "",
+      "${0}"
+    ],
+    "description": "Define a database"
+  },
+  "Animation": {
+    "prefix": "animate",
+    "body": [
+      "animate ${1:element} {",
+      "\tduration = ${2:400ms}",
+      "",
+      "\tscale {",
+      "\t\tfrom = ${3:1.0}",
+      "\t\tto = ${4:1.2}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create an animation"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create an if statement"
+  },
+  "If-Else": {
+    "prefix": "ifelse",
+    "body": [
+      "if ${1:condition} {",
+      "\t${2}",
+      "} else {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create an if-else statement"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while ${1:condition} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a while loop"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for ${1:item} in ${2:collection} {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a for loop"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "import \"${1:path}\"",
+      "${0}"
+    ],
+    "description": "Import a module"
+  },
+  "Browser Toolbar": {
+    "prefix": "toolbar",
+    "body": [
+      "toolbar {",
+      "\tbackButton()",
+      "\tforwardButton()",
+      "\trefreshButton()",
+      "\thomeButton()",
+      "\turlbox {",
+      "\t\tid = \"${1:addressBar}\"",
+      "\t\tplaceholder = \"Enter URL...\"",
+      "\t\tvalue = \"https://\"",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a browser toolbar"
+  },
+  "Browser View": {
+    "prefix": "browserView",
+    "body": [
+      "browserView {",
+      "\turl = \"${1:multip://home}\"",
+      "}"
+    ],
+    "description": "Create a browser view"
+  },
+  "Variable": {
+    "prefix": "var",
+    "body": [
+      "var ${1:name} = ${2:value}",
+      "${0}"
+    ],
+    "description": "Declare a variable"
+  },
+  "Constant": {
+    "prefix": "const",
+    "body": [
+      "const ${1:name} = ${2:value}",
+      "${0}"
+    ],
+    "description": "Declare a constant"
+  },
+  "Print": {
+    "prefix": "print",
+    "body": [
+      "print(\"${1:message}\")",
+      "${0}"
+    ],
+    "description": "Print a message"
+  },
+  "Event Handler": {
+    "prefix": "on click",
+    "body": [
+      "on click {",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Create a click event handler"
+  }
+}

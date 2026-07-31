@@ -1,0 +1,44 @@
+// Full Browser UI Example
+// Demonstrates toolbar, address bar, tabs, and navigation
+
+
+page Browser
+
+
+window {
+    title = "Multip Browser"
+
+
+    column {
+        // Browser toolbar
+        toolbar {
+            backButton()
+            forwardButton()
+            refreshButton()
+            homeButton()
+
+
+            urlbox {
+                id = "addressBar"
+                placeholder = "Enter URL..."
+                value = "https://"
+            }
+
+
+            goButton {
+                text = "Go"
+
+                on click {
+                    browser.navigate(addressBar.value)
+                    print("Navigating to: " + addressBar.value)
+                }
+            }
+        }
+
+
+        // Browser view
+        browserView {
+            url = "multip://home"
+        }
+    }
+}

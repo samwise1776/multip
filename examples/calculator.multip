@@ -1,0 +1,178 @@
+// Variables, Functions, and Control Flow Example
+
+
+const appName = "Multip Calculator"
+const version = "1.0.0"
+
+
+var result = 0
+var history = []
+
+
+function add(a, b) {
+    return a + b
+}
+
+
+function subtract(a, b) {
+    return a - b
+}
+
+
+function multiply(a, b) {
+    return a * b
+}
+
+
+function divide(a, b) {
+    if b == 0 {
+        print("Error: Division by zero")
+        return 0
+    }
+    return a / b
+}
+
+
+function factorial(n) {
+    if n <= 1 {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+
+function fibonacci(n) {
+    if n <= 0 {
+        return 0
+    }
+    if n == 1 {
+        return 1
+    }
+    var a = 0
+    var b = 1
+    for i in range(2, n + 1) {
+        var temp = b
+        b = a + b
+        a = temp
+    }
+    return b
+}
+
+
+page Calculator
+
+
+window {
+    title = appName + " v" + version
+
+
+    column {
+        padding = 40
+
+
+        heading {
+            text = appName
+            size = 32
+            color = #3B82F6
+        }
+
+
+        text {
+            value = "Version: " + version
+            size = 14
+        }
+
+
+        // Display
+        text {
+            value = "Result: " + result
+            size = 24
+        }
+
+
+        // Arithmetic operations
+        row {
+            button {
+                text = "10 + 5"
+
+                on click {
+                    result = add(10, 5)
+                    print("10 + 5 = " + result)
+                }
+            }
+
+            button {
+                text = "10 - 5"
+
+                on click {
+                    result = subtract(10, 5)
+                    print("10 - 5 = " + result)
+                }
+            }
+
+            button {
+                text = "10 × 5"
+
+                on click {
+                    result = multiply(10, 5)
+                    print("10 × 5 = " + result)
+                }
+            }
+
+            button {
+                text = "10 ÷ 5"
+
+                on click {
+                    result = divide(10, 5)
+                    print("10 ÷ 5 = " + result)
+                }
+            }
+        }
+
+
+        // Math functions
+        heading {
+            text = "Math Functions"
+            size = 24
+        }
+
+
+        row {
+            button {
+                text = "5! = 120"
+
+                on click {
+                    result = factorial(5)
+                    print("5! = " + result)
+                }
+            }
+
+            button {
+                text = "fib(10) = 55"
+
+                on click {
+                    result = fibonacci(10)
+                    print("fib(10) = " + result)
+                }
+            }
+        }
+
+
+        // Loop demonstration
+        heading {
+            text = "Loop Demo"
+            size = 24
+        }
+
+
+        button {
+            text = "Print 1-10"
+
+            on click {
+                for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] {
+                    print("Number: " + i)
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+page Home
+
+
+window {
+    title = "Multip Welcome"
+
+
+    column {
+        padding = 40
+
+
+        heading {
+            text = "Welcome to Multip"
+            size = 36
+            color = #1a1a2e
+        }
+
+
+        text {
+            value = "A unified programming language for everything."
+            size = 18
+        }
+
+
+        button {
+            text = "Get Started"
+
+
+            on click {
+                print("Hello from Multip!")
+            }
+        }
+    }
+}
