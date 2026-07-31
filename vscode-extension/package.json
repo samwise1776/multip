@@ -4,6 +4,7 @@
   "description": "Syntax highlighting, IntelliSense, snippets, and language support for Multip (.multip) files",
   "version": "1.0.0",
   "publisher": "multip-lang",
+  "icon": "../assets/multip.svg",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -75,6 +76,17 @@
         "path": "./icons/multip-icon-theme.json"
       }
     ],
+    "colors": [
+      {
+        "id": "multip.iconColor",
+        "description": "Color for the Multip icon in the Activity Bar",
+        "defaults": {
+          "dark": "#7C3AED",
+          "light": "#6D28D9",
+          "highContrast": "#A78BFA"
+        }
+      }
+    ],
     "configuration": {
       "title": "Multip",
       "properties": {
@@ -99,7 +111,7 @@
   "keywords": ["multip", "multip-lang", ".multip", "programming language"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/multip-lang/multip-vscode"
+    "url": "https://github.com/samwise1776/multip"
   },
   "license": "MIT"
 }

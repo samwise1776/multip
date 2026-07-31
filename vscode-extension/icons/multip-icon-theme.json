@@ -1,7 +1,15 @@
 {
-  "icons": {
-    "*.multip": {
-      "icon": "../assets/multip.svg"
+  "iconDefinitions": {
+    "_multip_file": {
+      "iconPath": "../assets/multip.svg"
     }
+  },
+  "fileExtensions": {
+    "multip": "_multip_file"
+  },
+  "fileNames": {},
+  "languageIds": ["multip"],
+  "languageId": {
+    "multip": "_multip_file"
   }
 }
