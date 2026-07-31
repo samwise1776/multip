@@ -12,7 +12,7 @@ window {
         heading {
             text = "Welcome to Multip"
             size = 36
-            color = #1a1a2e
+            color = #27273f
         }
 
 

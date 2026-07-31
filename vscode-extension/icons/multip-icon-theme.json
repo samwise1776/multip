@@ -1,7 +1,7 @@
 {
   "iconDefinitions": {
     "_multip_file": {
-      "iconPath": "../assets/multip.svg"
+      "iconPath": "icons/multip-icon.png"
     }
   },
   "fileExtensions": {

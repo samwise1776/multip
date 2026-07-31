@@ -4,7 +4,6 @@
   "description": "Syntax highlighting, IntelliSense, snippets, and language support for Multip (.multip) files",
   "version": "1.0.0",
   "publisher": "multip-lang",
-  "icon": "../assets/multip.svg",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -85,6 +84,133 @@
           "light": "#6D28D9",
           "highContrast": "#A78BFA"
         }
+      }
+    ],
+    "tokenColors": [
+      {
+        "name": "Comments",
+        "scope": ["comment.line.double-slash.multip", "comment.block.multip"],
+        "settings": { "foreground": "#6A9955", "fontStyle": "italic" }
+      },
+      {
+        "name": "Strings",
+        "scope": ["string.quoted.double.multip", "string.quoted.single.multip"],
+        "settings": { "foreground": "#CE9178" }
+      },
+      {
+        "name": "Escape Characters",
+        "scope": ["constant.character.escape.multip"],
+        "settings": { "foreground": "#D7BA7D" }
+      },
+      {
+        "name": "Numbers",
+        "scope": ["constant.numeric.float.multip", "constant.numeric.integer.multip"],
+        "settings": { "foreground": "#B5CEA8" }
+      },
+      {
+        "name": "Colors",
+        "scope": ["constant.other.color.multip"],
+        "settings": { "foreground": "#7C3AED", "fontStyle": "bold" }
+      },
+      {
+        "name": "Units",
+        "scope": ["keyword.other.unit.multip"],
+        "settings": { "foreground": "#B5CEA8" }
+      },
+      {
+        "name": "Control Flow Keywords",
+        "scope": ["keyword.control.multip"],
+        "settings": { "foreground": "#C586C0", "fontStyle": "bold" }
+      },
+      {
+        "name": "Declaration Keywords",
+        "scope": ["keyword.declaration.multip"],
+        "settings": { "foreground": "#569CD6", "fontStyle": "bold" }
+      },
+      {
+        "name": "Other Keywords",
+        "scope": ["keyword.other.multip"],
+        "settings": { "foreground": "#569CD6" }
+      },
+      {
+        "name": "UI Elements",
+        "scope": ["support.type.builtin.multip"],
+        "settings": { "foreground": "#4EC9B0", "fontStyle": "bold" }
+      },
+      {
+        "name": "Comparison Operators",
+        "scope": ["keyword.operator.comparison.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Assignment Operators",
+        "scope": ["keyword.operator.assignment.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Arithmetic Operators",
+        "scope": ["keyword.operator.arithmetic.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Logical Operators",
+        "scope": ["keyword.operator.logical.multip"],
+        "settings": { "foreground": "#569CD6" }
+      },
+      {
+        "name": "Arrow Operators",
+        "scope": ["keyword.operator.arrow.multip"],
+        "settings": { "foreground": "#569CD6" }
+      },
+      {
+        "name": "Braces",
+        "scope": ["punctuation.brace.curly.multip"],
+        "settings": { "foreground": "#FFD700" }
+      },
+      {
+        "name": "Brackets",
+        "scope": ["punctuation.bracket.square.multip"],
+        "settings": { "foreground": "#DA70D6" }
+      },
+      {
+        "name": "Parentheses",
+        "scope": ["punctuation.parenthesis.multip"],
+        "settings": { "foreground": "#87CEEB" }
+      },
+      {
+        "name": "Commas",
+        "scope": ["punctuation.separator.comma.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Colons",
+        "scope": ["punctuation.separator.colon.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Dots",
+        "scope": ["punctuation.separator.dot.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Semicolons",
+        "scope": ["punctuation.terminator.multip"],
+        "settings": { "foreground": "#D4D4D4" }
+      },
+      {
+        "name": "Function Names",
+        "scope": ["entity.name.function.multip"],
+        "settings": { "foreground": "#DCDCAA", "fontStyle": "bold" }
+      },
+      {
+        "name": "Properties",
+        "scope": ["variable.other.property.multip"],
+        "settings": { "foreground": "#9CDCFE" }
+      },
+      {
+        "name": "Variables",
+        "scope": ["variable.other.multip"],
+        "settings": { "foreground": "#9CDCFE" }
       }
     ],
     "configuration": {
