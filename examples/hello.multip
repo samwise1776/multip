@@ -1,11 +1,28 @@
-window {
-    title = "Hello"
-}
-button {
-    text = "Click Me"
+page Home
 
-    on click {
-        print("Hello world")
-        
+window {
+    title = "My First App"
+
+    column {
+        padding = 40
+
+        heading {
+            text = "Hello, World!"
+            size = 36
+            color = #7C3AED
+        }
+
+        text {
+            value = "Welcome to Multip"
+            size = 18
+        }
+
+        button {
+            text = "Click Me"
+
+            on click {
+                print("Hello from Multip!")
+            }
+        }
     }
 }

@@ -204,8 +204,8 @@ public class Browser extends JPanel {
             return;
         }
 
-        // Handle .multip file paths
-        if (url.endsWith(".multip")) {
+        // Handle .multip file paths (local)
+        if (url.endsWith(".multip") && !url.startsWith("http")) {
             loadMultipFile(url);
             return;
         }
@@ -220,28 +220,158 @@ public class Browser extends JPanel {
         statusLabel.setText("Loading: " + finalUrl + "...");
         addHistory(finalUrl);
 
-        // Simulate page load
-        SwingWorker<String, Void> worker = new SwingWorker<>() {
+        // Fetch URL content - if it's a .multip file, render it
+        SwingWorker<JPanel, Void> worker = new SwingWorker<>() {
             @Override
-            protected String doInBackground() {
+            protected JPanel doInBackground() {
                 try {
-                    Thread.sleep(500);
-                } catch (InterruptedException ignored) {}
-                return finalUrl;
+                    java.net.URL urlObj = new java.net.URL(finalUrl);
+                    java.net.HttpURLConnection conn = (java.net.HttpURLConnection) urlObj.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setConnectTimeout(5000);
+                    conn.setReadTimeout(10000);
+                    conn.setRequestProperty("User-Agent", "Multip Browser/1.0");
+
+                    int responseCode = conn.getResponseCode();
+                    if (responseCode != 200) {
+                        return createErrorPage("HTTP " + responseCode, "Failed to load: " + finalUrl);
+                    }
+
+                    java.io.InputStream is = conn.getInputStream();
+                    String content = new String(is.readAllBytes());
+                    is.close();
+                    conn.disconnect();
+
+                    // Check if content looks like Multip code
+                    if (isMultipContent(content, finalUrl)) {
+                        return renderMultipSource(content, finalUrl);
+                    } else {
+                        return createWebPageContent(finalUrl, content);
+                    }
+                } catch (Exception e) {
+                    return createErrorPage("Error", e.getMessage());
+                }
             }
 
             @Override
             protected void done() {
                 try {
-                    String loadedUrl = get();
-                    displayUrl(loadedUrl);
-                    statusLabel.setText("Done: " + loadedUrl);
+                    JPanel panel = get();
+                    String key = "web_" + finalUrl.hashCode();
+                    contentPanel.add(panel, key);
+                    contentLayout.show(contentPanel, key);
+
+                    // Update tab title
+                    String title = extractTitle(finalUrl);
+                    tabModel.set(currentTab, title);
+                    statusLabel.setText("Done: " + finalUrl);
                 } catch (Exception e) {
                     statusLabel.setText("Error loading page");
                 }
             }
         };
         worker.execute();
+    }
+
+    private boolean isMultipContent(String content, String url) {
+        // Check URL ends with .multip
+        if (url.toLowerCase().endsWith(".multip")) return true;
+
+        // Check content starts with Multip keywords
+        String trimmed = content.strip();
+        if (trimmed.startsWith("page ") || trimmed.startsWith("window") ||
+            trimmed.startsWith("component ") || trimmed.startsWith("route ") ||
+            trimmed.startsWith("server ") || trimmed.startsWith("const ") ||
+            trimmed.startsWith("var ") || trimmed.startsWith("function ")) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private JPanel renderMultipSource(String source, String url) {
+        try {
+            Lexer lexer = new Lexer(source);
+            List<Token> tokens = lexer.tokenize();
+            Parser parser = new Parser(tokens);
+            ASTNode node = parser.parse();
+            ASTNode.Program program = (ASTNode.Program) node;
+            return renderMultipProgram(program, url);
+        } catch (Exception e) {
+            return createErrorPage("Parse Error", e.getMessage());
+        }
+    }
+
+    private JPanel createWebPageContent(String url, String content) {
+        JPanel page = new JPanel();
+        page.setLayout(new BoxLayout(page, BoxLayout.Y_AXIS));
+        page.setBorder(new EmptyBorder(30, 30, 30, 30));
+        page.setBackground(Color.WHITE);
+
+        JLabel title = new JLabel("Web Page");
+        title.setFont(new Font("SansSerif", Font.BOLD, 24));
+        title.setForeground(MULTIP_TEXT);
+        page.add(title);
+
+        page.add(Box.createVerticalStrut(10));
+
+        JLabel urlLabel = new JLabel(url);
+        urlLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        urlLabel.setForeground(MULTIP_GRAY);
+        page.add(urlLabel);
+
+        page.add(Box.createVerticalStrut(20));
+
+        // Try to display as HTML if it looks like HTML
+        if (content.contains("<html") || content.contains("<!DOCTYPE")) {
+            JLabel htmlLabel = new JLabel("<html><div style='width:600px'>" + content + "</div></html>");
+            htmlLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
+            page.add(htmlLabel);
+        } else {
+            JLabel contentLabel = new JLabel("<html><pre style='font-family:monospace'>" + escapeHtml(content.substring(0, Math.min(content.length(), 5000))) + "</pre></html>");
+            contentLabel.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            page.add(contentLabel);
+        }
+
+        return page;
+    }
+
+    private JPanel createErrorPage(String title, String message) {
+        JPanel page = new JPanel();
+        page.setLayout(new BoxLayout(page, BoxLayout.Y_AXIS));
+        page.setBorder(new EmptyBorder(30, 30, 30, 30));
+        page.setBackground(Color.WHITE);
+
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        titleLabel.setForeground(Color.RED);
+        page.add(titleLabel);
+
+        page.add(Box.createVerticalStrut(10));
+
+        JLabel msgLabel = new JLabel("<html><pre>" + escapeHtml(message != null ? message : "Unknown error") + "</pre></html>");
+        msgLabel.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        page.add(msgLabel);
+
+        return page;
+    }
+
+    private String extractTitle(String url) {
+        try {
+            if (url.contains("/")) {
+                String path = url.substring(url.lastIndexOf('/') + 1);
+                if (path.contains("?")) path = path.substring(0, path.indexOf('?'));
+                if (!path.isEmpty()) return path;
+            }
+            java.net.URL urlObj = new java.net.URL(url);
+            return urlObj.getHost();
+        } catch (Exception e) {
+            return url;
+        }
+    }
+
+    private String escapeHtml(String s) {
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     }
 
     private void navigateInternal(String url) {
@@ -694,13 +824,6 @@ public class Browser extends JPanel {
         contentLayout.show(contentPanel, "file_" + path);
     }
 
-    private void displayUrl(String url) {
-        JPanel page = createWebPage(url);
-        String key = "web_" + url.hashCode();
-        contentPanel.add(page, key);
-        contentLayout.show(contentPanel, key);
-    }
-
     // ─── Tab Management ─────────────────────────────
 
     public void openTab() {
@@ -713,7 +836,7 @@ public class Browser extends JPanel {
         contentPanel.add(homePage, key);
         contentLayout.show(contentPanel, key);
 
-        urlField.setText("https://");
+        urlField.setText("multip://home");
         statusLabel.setText("New tab opened");
     }
 
